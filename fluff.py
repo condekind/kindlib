@@ -11,9 +11,9 @@ def p(*args):
 def Colstats(df: pd.DataFrame):
   return pd.DataFrame(data=[(
     c,
-    mdf[c].dtype,
-    mdf[c].nunique(),
-    mdf[c].isna().sum(),
-    len(mdf[mdf[c].duplicated() == True]))
-    for c in mdf.columns], columns=[
+    df[c].dtype,
+    df[c].nunique(),
+    df[c].isna().sum(),
+    len(df[df[c].duplicated() == True]))
+    for c in df.columns], columns=[
     'col', 'type', 'nunique', 'nan', 'duplicated_values'])
