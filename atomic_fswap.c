@@ -21,8 +21,6 @@ int main(int argc, char *argv[])
   char f1ap[path_max]; memset(f1ap, 0, path_max); realpath(argv[1], f1ap);
   char f2ap[path_max]; memset(f2ap, 0, path_max); realpath(argv[2], f2ap);
   int fd1 = open(f1ap, O_PATH), fd2 = open(f2ap, O_PATH), err;
-  switch (err = renameat2(fd1, f1ap, fd2, f2ap, RENAME_EXCHANGE)) {
-    case  0: close(fd1); close(fd2); return 0;
-    default: perror("Error");        return err;
-  }
+  if ((err = renameat2(fd1, f1ap, fd2, f2ap, RENAME_EXCHANGE))) perror("Error");
+  close(fd1); close(fd2); return err;
 }
