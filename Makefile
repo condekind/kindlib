@@ -1,9 +1,13 @@
 CC=gcc
-CFLAGS=-std=gnu17 -O3
-DEPS=hellomake.h
+CFLAGS=-static -std=gnu17 -O3 -I.
+OBJ=atomic_fswap.o 
+DEPS=atomic_fswap.h
 
-swap: atomic_fswap.c
-	$(CC) $(CFLAGS) $< -o $@
+%.o: %.c $(DEPS)
+	$(CC) -c $< $(CFLAGS) -o $@
+
+swap: $(OBJ)
+	$(CC) $^ $(CFLAGS) -o $@
 
 clean:
-	rm swap
+	rm -rf $(OBJ) swap
