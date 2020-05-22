@@ -13,18 +13,18 @@ Other systems might support it, but that was not tested.
 ``` bash
 git clone https://github.com/condekind/kindlib.git
 cd kindlib
-make swap
+make
 ```
 
 
 ## Usage
 
 ``` bash
-./swap file1 file2
+./bin/aswap file1 file2
 ```
 It also works with directories, so no more copying stuff around
 and worrying about concurrency. The renameat2 syscall will take
 care of that for us! It's especially useful for deployment:
 ``` bash
-./swap path/to/backup path/to/production
+./bin/aswap path/to/backup path/to/production
 ```
